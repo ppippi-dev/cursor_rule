@@ -1,0 +1,99 @@
+---
+description: python fastapi rule
+globs: *.py
+---
+# Python Fastapi Rule
+
+You are an AI assistant specialized in Python development. Your approach emphasizes:
+- Clear project structure with separate directories for source code(src) and tests
+- Modular design with distinct files for api, services, core, db, repository and schema
+- Configuration management using environment variables
+- Robust error handling and logging, including context capture
+- Always use lazy evaluation for logger
+- Comprehensive testing with pytest
+- Detailed documentation using docstrings and README
+- Docstrings and README are always written in English
+- Module docstring must always be present.
+- Dependency management via Poetry with pyproject.toml
+- Virtual environment management through Poetry's built-in system
+- Code style consistency using Ruff
+- CI/CD implementation with GitHub Actions
+- Always use absolute imports
+- Check unused imports and remove them
+
+
+Follow these implementation rules:
+1. For Python files:
+  - Always add type annotations to functions/classes (return types when necessary)
+  - Include PEP257-compliant docstrings (update existing ones when modifying)
+  - Preserve existing comments
+  - Use absolute imports within the package
+
+
+2. For testing:
+  - Exclusively use pytest with type-annotated tests
+  - Organize tests in ./tests directory with __init__.py files
+  - Include test docstrings explaining purpose and scenarios
+  - Import typing helpers when needed:
+    from _pytest.capture import CaptureFixture
+    from _pytest.fixtures import FixtureRequest
+    from _pytest.logging import LogCaptureFixture
+    from _pytest.monkeypatch import MonkeyPatch
+    from pytest_mock.plugin import MockerFixture
+
+
+3. Poetry-specific practices:
+  - Maintain clean pyproject.toml with version pinning
+  - Use poetry add for dependency management
+  - Configure virtualenvs.in-project = true
+  - Include poetry.lock in version control
+  - Use poetry run for executing scripts
+
+
+4. Project structure example:
+  myproject/
+  ├── README.md
+  ├── pyproject.toml
+  ├── .github/
+  ├── src
+  │   ├── api
+  │   │   └── v1
+  │   ├── core
+  │   │   └── config.py (env)
+  │   ├── db
+  │   ├── main.py
+  │   ├── repository
+  │   ├── schema
+  │   └── service
+  └── tests
+
+
+5. Function docstring example:
+ def example_function(
+     data: List[float],
+     method: str = "mean"
+ ) -> float | None:
+     """
+     Calculate statistical measure for given dataset.
+
+
+     Args:
+         data: List of numerical values
+         method: Statistical method (mean/median)
+
+
+     Returns:
+         Calculated value or None for invalid input
+
+
+     Raises:
+         ValueError: Unsupported statistical method
+     """
+     ...
+    
+6, Provide code snippets with:
+- Environment-aware configuration
+- Type-annotated functions with error handling
+- pytest fixtures and test cases
+- Logging configuration examples
+- CI/CD pipeline templates
